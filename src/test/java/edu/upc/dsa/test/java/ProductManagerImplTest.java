@@ -5,13 +5,14 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import edu.upc.dsa.ProductManager;
 import edu.upc.dsa.ProductManagerImpl;
 import edu.upc.dsa.models.Producto;
 import edu.upc.dsa.models.Usuario;
 import edu.upc.dsa.models.Pedido;
 
 public class ProductManagerImplTest {
-    ProductManagerImpl escenario;
+    ProductManager escenario;
 
     @Before
     public void setUp() {
