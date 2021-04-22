@@ -3,6 +3,7 @@ package edu.upc.dsa;
 import edu.upc.dsa.models.Pedido;
 import edu.upc.dsa.models.Producto;
 import edu.upc.dsa.models.Usuario;
+import org.apache.log4j.Logger;
 
 import java.util.*;
 
@@ -11,6 +12,8 @@ public class ProductManagerImpl implements ProductManager{
     private List<Producto> listaProductos;
     private Queue<Pedido> colaPedidosPendientes;
     private int numVentas;
+
+    final static Logger logger = Logger.getLogger(ProductManagerImpl.class);
 
     private static ProductManagerImpl instance;
 
@@ -33,35 +36,47 @@ public class ProductManagerImpl implements ProductManager{
 
     public void anadirProducto(Producto producto)
     {
+        logger.info("Lista de productos ANTES de agregar: " + listaProductos);
         this.listaProductos.add(producto);
+        logger.info("Lista de productos DESPUÉS de agregar: " + listaProductos);
     }
 
     public void anadirUsuario(Usuario usuario)
     {
+        logger.info("Lista de usuarios ANTES de agregar: " + usuarios);
         this.usuarios.put(usuario.getID(), usuario);
+        logger.info("Lista de productos DESPUES de agregar: " + usuarios);
     }
 
-    public int getNumeroPedidos(){ return this.colaPedidosPendientes.size(); }
+    public int getNumeroPedidos(){
+
+        logger.info("Peticion getNumeroPedidos() => " + this.colaPedidosPendientes.size());
+        return this.colaPedidosPendientes.size();
+    }
 
     //lista ordenada por precios ASC
     public List<Producto> getListaProductosPorPrecio() {
-
+        logger.info("Peticion getListaProductosPorPrecio()");
+        logger.info("Lista de productos sin ordenar: " + listaProductos);
         Collections.sort(this.listaProductos, new Comparator<Producto>() {
             @Override
             public int compare(Producto p1, Producto p2) {
                 return (int)p1.getPrecio() - (int)p2.getPrecio();
             }
         });
+        logger.info("Lista de productos ordenada por precio: " + listaProductos);
         return listaProductos;
     }
 
     public List<Producto> getListaProductos()
     {
+        logger.info("Peticion getListaProductos() => " + listaProductos);
         return listaProductos;
     }
 
     public Queue<Pedido> getColaPedidosPendientes()
     {
+        logger.info("Peticion getColaPedidosPendientes() => " + colaPedidosPendientes);
         return this.colaPedidosPendientes;
     }
 
