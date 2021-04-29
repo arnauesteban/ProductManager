@@ -21,7 +21,7 @@ import java.util.List;
 public class BarService {
 
     //ProductManagerImpl o interfaz ProductManager ????
-    private ProductManagerImpl pm;
+    private ProductManager pm;
 
     public BarService() {
         this.pm = ProductManagerImpl.getInstance();
@@ -82,7 +82,7 @@ public class BarService {
             @ApiResponse(code = 201, message = "Successful", response = Pedido.class),
             @ApiResponse(code = 404, message = "No hay pedidos")
     })
-    @Path("/{id}")
+    @Path("/pedidos/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPedidos(@PathParam("id") String id) {
 
@@ -100,7 +100,7 @@ public class BarService {
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response = Producto.class)
     })
-    @Path("/{id}")
+    @Path("/productos/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getProductosByVentas() {
 

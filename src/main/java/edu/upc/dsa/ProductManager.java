@@ -20,4 +20,6 @@ public interface ProductManager {
     Queue<Pedido> getColaPedidosPendientes();
     int getNumeroPedidos();
     int getNumVentas();
+    int getNumProductos();
+    List<Producto> getListaProductosPorPrecio();
 }
